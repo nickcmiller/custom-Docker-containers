@@ -1,4 +1,3 @@
-nment/custom-Docker-containers# cat main.tf
 # -- root/providers.tf --
 
 locals{
