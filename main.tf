@@ -1,3 +1,4 @@
+nment/custom-Docker-containers# cat main.tf
 # -- root/providers.tf --
 
 locals{
@@ -142,7 +143,7 @@ resource "aws_security_group" "allow_ssh_http" {
   }
 }
 
-resource "aws_ecr_repository" "test_nginx_ecr_repo" {
+resource "aws_ecr_repository" "ecr_repo" {
   name                 = "${local.image_name}"
   image_tag_mutability = "MUTABLE"
   force_delete = true
@@ -163,4 +164,3 @@ resource "aws_instance" "amazon_linux_node" {
     user_data = templatefile("${path.module}/userdata.sh", {image_name=local.image_name})
     security_groups = ["${aws_security_group.allow_ssh_http.name}"]
     depends_on = [aws_security_group.allow_ssh_http, aws_ecr_repository.test_nginx_ecr_repo]
-}
