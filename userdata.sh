@@ -1,11 +1,11 @@
 #!/bin/bash
 
 #install Docker
-yum update -y
-yum install docker -y
+sudo yum update -y
+sudo yum -y install docker 
 
 #allow the ec2-user to run Docker commands without being root
-usermod -a -G docker ec2-user
+sudo usermod -a -G docker ec2-user
 id ec2-user
 
 #make the directory for Dockerfile and navigate to it

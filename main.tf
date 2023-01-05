@@ -14,7 +14,7 @@ resource "aws_iam_policy" "ecr_policy" {
       "Version": "2012-10-17",
       "Statement": [
           {
-              "Sid": "VisualEditor0",
+              "Sid": "ecr-policy",
               "Effect": "Allow",
               "Action": [
                   "ecr:PutImageTagMutability",
@@ -163,3 +163,4 @@ resource "aws_instance" "amazon_linux_node" {
     user_data = templatefile("${path.module}/userdata.sh", {image_name=local.image_name})
     security_groups = ["${aws_security_group.allow_ssh_http.name}"]
     depends_on = [aws_security_group.allow_ssh_http, aws_ecr_repository.test_nginx_ecr_repo]
+}
